@@ -1,9 +1,13 @@
-#include <iostream>
+#include <cmath>
+#include <cstdio>
 #include <vector>
+#include <iostream>
+#include <algorithm>
 using namespace std;
 
-int main()
-{
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */
     int n,value;
     cin>>n;
     vector<int> a;
@@ -16,20 +20,12 @@ int main()
     cin>>q;
     for(int i=0;i<q;i++)
     {
-        cin>>check;
-        for(int j=0;j<n;j++)
-        {
-            if(check==a[j])
-            {
-                cout<<"Yes "<<j<<"\n";
-                break;
-            }
-            else if(check<a[j])
-            {
-                cout<<"No "<<j<<"\n";
-                break;
-            }
-        }
+        cin>>value;
+        vector<int>::iterator low = lower_bound(a.begin(),a.end(),value);
+        if(a[low-a.begin()]==value)
+            cout<<"Yes "<<low-a.begin()+1<<'\n';
+        else
+            cout<<"No "<<low-a.begin()+1<<'\n';
     }
     return 0;
 }
